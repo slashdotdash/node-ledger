@@ -1,7 +1,7 @@
 {
   "name": "node-ledger",
   "version": "0.0.0",
-  "description": "Wrapper around the ledger command-line interface (ledger-cli).",
+  "description": "API for the ledger command-line interface (ledger-cli.org).",
   "main": "lib/ledger.js",
   "scripts": {
     "test": ""

@@ -10,7 +10,7 @@ describe('Balance', function() {
   
   it("should return two accounts", function(done) {
     var spec = this;
-    ledger.balance(function(err, balance) {
+    ledger.balance(function(err, entry) {
       if (err) return spec.fail(err);
       done();      
     });
