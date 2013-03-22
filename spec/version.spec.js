@@ -2,8 +2,15 @@ var ledger = require('../lib/ledger'),
   Ledger = ledger.Ledger;
 
 describe('Ledger', function() {
+  beforeEach(function() {
+    ledger = new Ledger(),
+        spec = this;
+  });
+  
   it("should return installed ledger-cli version", function(done) {
-    new Ledger().version(function(version) {
+    ledger.version(function(err, version) {
+      if (err) return spec.fail(err);
+      
       expect(version).toBe('3.0.0-20120518');
       done();
     });
