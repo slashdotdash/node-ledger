@@ -1,5 +1,5 @@
 {
-  "name": "ledger",
+  "name": "ledger-cli",
   "homepage": "https://github.com/slashdotdash/node-ledger",
   "version": "0.0.1",
   "description": "API for the ledger command-line interface (ledger-cli.org).",
