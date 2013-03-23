@@ -1,19 +1,26 @@
 {
-  "name": "node-ledger",
-  "version": "0.0.0",
+  "name": "ledger",
+  "homepage": "https://github.com/slashdotdash/node-ledger",
+  "version": "0.0.1",
   "description": "API for the ledger command-line interface (ledger-cli.org).",
-  "main": "lib/ledger.js",
-  "scripts": {
-    "test": ""
+  "repository":  {
+    "type": "git",
+    "url": "git://github.com/slashdotdash/node-ledger.git"
   },
-  "repository": "",
   "keywords": [
     "ledger",
     "accounting",
     "finance"
   ],
-  "author": "Ben Smith",
+  "author": {
+    "name": "Ben Smith",
+    "email": "ben@10consulting.com"
+  },
   "license": "MIT",
+  "main": "lib/ledger.js",
+  "scripts": {
+    "test": ""
+  },
   "devDependencies": {
     "jasmine-node": "~1.4.0",
     "grunt": "~0.4.1",
@@ -22,5 +29,6 @@
   },
   "dependencies": {
     "lodash": "~1.0.1"
-  }
+  },
+  "readmeFilename": "README.md"
 }
