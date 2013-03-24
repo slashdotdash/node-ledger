@@ -1,7 +1,7 @@
 var ledger = require('../lib/ledger'),
-  Ledger = ledger.Ledger,
-  toBeBalance = require('./matchers/balance-matcher').toBeBalance;
-  
+    Ledger = ledger.Ledger,
+    toBeBalance = require('./matchers/balance-matcher').toBeBalance;
+
 describe('Balance', function() {
   var spec;
   
@@ -16,13 +16,18 @@ describe('Balance', function() {
     beforeEach(function(done) {
       ledger = new Ledger({file: 'spec/data/single-transaction.dat'}),
       balances = [];
-      
-      ledger.balance(function(err, entry) {
-        if (err) {
-          return spec.fail(err);
-        }
-        balances.push(entry);
-      }, done);
+
+      ledger.balance()
+        .on('record', function(entry) {
+          balances.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .on('error', function(error) {
+          spec.fail(error);
+          done();
+        });
     });
 
     it("should return balance for two accounts", function() {
