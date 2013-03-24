@@ -1,4 +1,4 @@
-# node-ledger
+# ledger-cli
 
 API for the Ledger command-line interface ([ledger-cli.org](http://ledger-cli.org/)).
 
