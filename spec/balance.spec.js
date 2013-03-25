@@ -18,7 +18,7 @@ describe('Balance', function() {
       balances = [];
 
       ledger.balance()
-        .on('record', function(entry) {
+        .on('data', function(entry) {
           balances.push(entry);
         })
         .once('end', function(){

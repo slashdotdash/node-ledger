@@ -18,7 +18,7 @@ describe('Register', function() {
       entries = [];
       
       ledger.register()
-        .on('record', function(entry) {
+        .on('data', function(entry) {
           entries.push(entry);
         })
         .once('end', function(){
