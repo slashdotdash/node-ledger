@@ -28,6 +28,18 @@ The balance command reports the current balance of all accounts.
     ledger.balance()
       .on('data', function(entry) {
         // JSON object for each entry
+        entry = {
+          total: {
+            currency: '£',
+            amount: 1000,
+            formatted: '£1,000.00'
+          }, 
+          account: { 
+            fullname: 'Assets:Checking',
+            shortname: 'Assets:Checking',
+            depth: 2,
+          }
+        }
       })
       .once('end', function(){
         // completed

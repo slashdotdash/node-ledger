@@ -1,7 +1,7 @@
 {
   "name": "ledger-cli",
   "homepage": "https://github.com/slashdotdash/node-ledger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "API for the ledger command-line interface (ledger-cli.org).",
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "lodash": "~1.0.1",
-    "fast-csv": "0.0.0"
+    "csv": "~0.2.9"
   },
   "readmeFilename": "README.md"
 }
