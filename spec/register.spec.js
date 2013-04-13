@@ -24,7 +24,7 @@ describe('Register', function() {
         .once('end', function(){
           done();
         })
-        .on('error', function(error) {
+        .once('error', function(error) {
           spec.fail(error);
           done();
         });
@@ -36,7 +36,7 @@ describe('Register', function() {
 
     it("should parse transaction", function() {
       var transaction = entries[0];
-      expect(transaction.date).toEqual(new Date(2013, 3, 19));
+      expect(transaction.date).toEqual(new Date(2013, 2, 19));
       expect(transaction.payee).toBe('My Employer');
     });
 
@@ -56,4 +56,43 @@ describe('Register', function() {
       });
     });    
   });
+  
+  describe('filtering by account', function() {
+    var ledger, balances;
+    
+    beforeEach(function(done) {
+      ledger = new Ledger({file: 'spec/data/drewr.dat'}),
+      entries = [];
+
+      ledger.register({filter: 'income'})
+        .on('data', function(entry) {
+          entries.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .once('error', function(error) {
+          spec.fail(error);
+          done();
+        });
+    });
+
+    it("should return entries for two matching transactions", function() {
+      expect(entries.length).toBe(2);
+    });
+
+    it("should parse first transaction", function() {
+      var transaction = entries[0];
+      expect(transaction.date).toEqual(new Date(2004, 0, 5));
+      expect(transaction.payee).toBe('Employer');
+      expect(transaction.postings.length).toBe(1);
+    });
+    
+    it("should parse second transaction", function() {
+      var transaction = entries[1];
+      expect(transaction.date).toEqual(new Date(2004, 1, 1));
+      expect(transaction.payee).toBe('Sale');
+      expect(transaction.postings.length).toBe(1);      
+    });
+  })
 });
