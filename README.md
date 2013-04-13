@@ -18,7 +18,7 @@ Install dependencies with npm.
 
 Use the Ledger class to execute reports (only balance is currently supported).
 
-    var Ledger = require('ledger-cli).Ledger;
+    var Ledger = require('ledger-cli').Ledger;
     ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
     
 ### Balance    
