@@ -43,15 +43,23 @@ describe('Register', function() {
     it("should parse the first posting", function() {
       var posting = entries[0].postings[0];
       expect(posting).toBePosting({ 
-        amount: '£1,000.00', 
+        commodity: {
+          currency: '£',
+          amount: 1000,
+          formatted: '£1,000.00'
+        },
         account: 'Assets:Checking'
       });
     });
     
     it("should parse the second posting", function() {
       var posting = entries[0].postings[1];
-      expect(posting).toBePosting({ 
-        amount: '£-1,000.00', 
+      expect(posting).toBePosting({
+        commodity: {
+          currency: '£',
+          amount: -1000,
+          formatted: '£-1,000.00'
+        },
         account: 'Income:Salary'
       });
     });    
@@ -64,7 +72,7 @@ describe('Register', function() {
       ledger = new Ledger({file: 'spec/data/drewr.dat'}),
       entries = [];
 
-      ledger.register({filter: 'income'})
+      ledger.register({account: 'Income'})
         .on('data', function(entry) {
           entries.push(entry);
         })
