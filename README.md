@@ -6,17 +6,24 @@ API for the Ledger command-line interface ([ledger-cli.org](http://ledger-cli.or
 
 ## Dependencies
 
-Requires the Ledger to be installed, for Mac OS X using homebrew and latest 3.0 version.
+  * [Ledger 3](http://ledger-cli.org/)
+  * [Node.js](nodejs.org) and npm
+
+### Installing Ledger
+
+The simplest way to install Ledger 3 is through [Homebrew](http://mxcl.github.com/homebrew/).
 
     brew install ledger --HEAD
 
+The `--HEAD` option is required to install version 3.x.
+
 ## Usage
 
-Install dependencies with npm.
+Install `ledger-cli` and its dependencies with npm.
 
     npm install ledger-cli
 
-Use the Ledger class to execute reports (only balance is currently supported).
+Use the Ledger class to execute reports (balance & register are currently supported).
 
     var Ledger = require('ledger-cli').Ledger;
     ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
