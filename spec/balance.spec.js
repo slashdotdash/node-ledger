@@ -1,3 +1,4 @@
+/*global require, describe, beforeEach, it, expect */
 var ledger = require('../lib/ledger'),
     Ledger = ledger.Ledger,
     toBeBalance = require('./matchers/balance-matcher').toBeBalance;
@@ -44,7 +45,7 @@ describe('Balance', function() {
         account: { 
           fullname: 'Assets:Checking',
           shortname: 'Assets:Checking',
-          depth: 2,
+          depth: 2
         }
       });
     });
@@ -59,7 +60,7 @@ describe('Balance', function() {
         account: { 
           fullname: 'Income:Salary', 
           shortname: 'Income:Salary',
-          depth: 2,
+          depth: 2
         } 
       });
     });

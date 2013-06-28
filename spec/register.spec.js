@@ -1,3 +1,4 @@
+/*global require, describe, beforeEach, it, expect */
 var ledger = require('../lib/ledger'),
   Ledger = ledger.Ledger,
   toBePosting = require('./matchers/posting-matcher').toBePosting;
@@ -11,7 +12,7 @@ describe('Register', function() {
   });
   
   describe('single transaction', function() {
-    var ledger, balances;
+    var ledger, entries;
     
     beforeEach(function(done) {
       ledger = new Ledger({file: 'spec/data/single-transaction.dat'}),
@@ -66,7 +67,7 @@ describe('Register', function() {
   });
   
   describe('filtering by account', function() {
-    var ledger, balances;
+    var ledger, entries;
     
     beforeEach(function(done) {
       ledger = new Ledger({file: 'spec/data/drewr.dat'}),
@@ -102,5 +103,5 @@ describe('Register', function() {
       expect(transaction.payee).toBe('Sale');
       expect(transaction.postings.length).toBe(1);      
     });
-  })
+  });
 });

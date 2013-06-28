@@ -8,7 +8,7 @@
     
     this.message = function () {
       return 'Expected ' + JSON.stringify(actual) + ' balance to be ' + JSON.stringify(expected);
-    }
+    };
     
     return _.isEqual(actual, expected);
   };
