@@ -104,4 +104,30 @@ describe('Register', function() {
       expect(transaction.postings.length).toBe(1);      
     });
   });
+  
+  // Handle transactions where the payee contains a double quote (")
+  describe('quoted transaction', function() {
+    var ledger, entries;
+    
+    beforeEach(function(done) {
+      ledger = new Ledger({file: 'spec/data/quoted-transaction.dat'}),
+      entries = [];
+      
+      ledger.register()
+        .on('data', function(entry) {
+          entries.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .once('error', function(error) {
+          spec.fail(error);
+          done();
+        });
+    });
+
+    it("should return entry for single transaction", function() {
+      expect(entries.length).toBe(1);
+    });
+  });
 });
