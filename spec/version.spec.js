@@ -10,11 +10,11 @@ describe('Ledger', function() {
     spec = this;
   });
   
-  it("should return installed ledger-cli version", function(done) {
+  it('should return installed ledger-cli version', function(done) {
     ledger.version(function(err, version) {
       if (err) { return spec.fail(err); }
       
-      expect(version).toBe('3.0.0-20120518');
+      expect(version.substr(0, 5)).toBe('3.0.0');
       done();
     });
   });

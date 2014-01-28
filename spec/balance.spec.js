@@ -15,7 +15,7 @@ describe('Balance', function() {
     var ledger, balances;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/single-transaction.dat'}),
+      ledger = new Ledger({file: 'spec/data/single-transaction.dat'});
       balances = [];
 
       ledger.balance()
@@ -31,18 +31,18 @@ describe('Balance', function() {
         });
     });
 
-    it("should return balance for two accounts", function() {
+    it('should return balance for two accounts', function() {
       expect(balances.length).toBe(2);
     });
 
-    it("should parse first balance", function() {
-      expect(balances[0]).toBeBalance({ 
+    it('should parse first balance', function() {
+      expect(balances[0]).toBeBalance({
         total: {
           currency: '£',
           amount: 1000,
           formatted: '£1,000.00'
-        }, 
-        account: { 
+        },
+        account: {
           fullname: 'Assets:Checking',
           shortname: 'Assets:Checking',
           depth: 2
@@ -50,18 +50,18 @@ describe('Balance', function() {
       });
     });
 
-    it("should parse second balance", function() {
+    it('should parse second balance', function() {
       expect(balances[1]).toBeBalance({
         total: {
           currency: '£',
           amount: -1000,
           formatted: '£-1,000.00'
-        }, 
-        account: { 
-          fullname: 'Income:Salary', 
+        },
+        account: {
+          fullname: 'Income:Salary',
           shortname: 'Income:Salary',
           depth: 2
-        } 
+        }
       });
     });
   });

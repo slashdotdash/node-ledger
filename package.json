@@ -1,7 +1,7 @@
 {
   "name": "ledger-cli",
   "homepage": "https://github.com/slashdotdash/node-ledger",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "API for the ledger command-line interface (ledger-cli.org).",
   "repository": {
     "type": "git",
@@ -25,15 +25,15 @@
     "lib": "lib"
   },
   "devDependencies": {
-    "jasmine-node": "~1.4.0",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.3.0",
-    "grunt-contrib-watch": "~0.3.1",
+    "jasmine-node": "~1.13.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-jasmine-node": "~0.1.1"
   },
   "dependencies": {
-    "lodash": "~1.0.1",
-    "csv": "~0.2.9"
+    "lodash": "~2.4.1",
+    "csv": "~0.3.6"
   },
   "readmeFilename": "README.md"
 }

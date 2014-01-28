@@ -15,7 +15,7 @@ describe('Register', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/single-transaction.dat'}),
+      ledger = new Ledger({file: 'spec/data/single-transaction.dat'});
       entries = [];
       
       ledger.register()
@@ -31,19 +31,19 @@ describe('Register', function() {
         });
     });
 
-    it("should return entry for single transaction", function() {
+    it('should return entry for single transaction', function() {
       expect(entries.length).toBe(1);
     });
 
-    it("should parse transaction", function() {
+    it('should parse transaction', function() {
       var transaction = entries[0];
       expect(transaction.date).toEqual(new Date(2013, 2, 19));
       expect(transaction.payee).toBe('My Employer');
     });
 
-    it("should parse the first posting", function() {
+    it('should parse the first posting', function() {
       var posting = entries[0].postings[0];
-      expect(posting).toBePosting({ 
+      expect(posting).toBePosting({
         commodity: {
           currency: '£',
           amount: 1000,
@@ -53,7 +53,7 @@ describe('Register', function() {
       });
     });
     
-    it("should parse the second posting", function() {
+    it('should parse the second posting', function() {
       var posting = entries[0].postings[1];
       expect(posting).toBePosting({
         commodity: {
@@ -63,14 +63,14 @@ describe('Register', function() {
         },
         account: 'Income:Salary'
       });
-    });    
+    });
   });
   
   describe('filtering by account', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/drewr.dat'}),
+      ledger = new Ledger({file: 'spec/data/drewr.dat'});
       entries = [];
 
       ledger.register({account: 'Income'})
@@ -86,31 +86,31 @@ describe('Register', function() {
         });
     });
 
-    it("should return entries for two matching transactions", function() {
+    it('should return entries for two matching transactions', function() {
       expect(entries.length).toBe(2);
     });
 
-    it("should parse first transaction", function() {
+    it('should parse first transaction', function() {
       var transaction = entries[0];
       expect(transaction.date).toEqual(new Date(2004, 0, 5));
       expect(transaction.payee).toBe('Employer');
       expect(transaction.postings.length).toBe(1);
     });
     
-    it("should parse second transaction", function() {
+    it('should parse second transaction', function() {
       var transaction = entries[1];
       expect(transaction.date).toEqual(new Date(2004, 1, 1));
       expect(transaction.payee).toBe('Sale');
-      expect(transaction.postings.length).toBe(1);      
+      expect(transaction.postings.length).toBe(1);
     });
   });
   
-  // Handle transactions where the payee contains a double quote (")
+  // Handle transactions where the payee contains a double quote (')
   describe('quoted transaction', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/quoted-transaction.dat'}),
+      ledger = new Ledger({file: 'spec/data/quoted-transaction.dat'});
       entries = [];
       
       ledger.register()
@@ -126,7 +126,7 @@ describe('Register', function() {
         });
     });
 
-    it("should return entry for single transaction", function() {
+    it('should return entry for single transaction', function() {
       expect(entries.length).toBe(1);
     });
   });
