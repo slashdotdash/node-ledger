@@ -1,9 +1,7 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
-    // Task configuration.
     jshint: {
       options: {
         curly: true,
@@ -24,24 +22,49 @@ module.exports = function(grunt) {
       gruntfile: {
         src: 'Gruntfile.js'
       },
-      lib_test: {
-        src: ['lib/**/*.js', 'spec/**/*.js']
+      lib: {
+        options: {
+          globals: {
+            require: true,
+            exports: true,
+            console: true
+          }
+        },
+        src: ['lib/**/*.js']
+      },
+      spec: {
+        options: {
+          globals: {
+            require: true,
+            describe: true,
+            beforeEach: true,
+            it: true,
+            expect: true
+          }
+        },
+        src: ['spec/**/*.js']
       }
     },
+
     'jasmine-node': {
       run: {
         spec: 'spec'
       },
       executable: './node_modules/.bin/jasmine-node'
     },
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
-      lib_test: {
-        files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'nodeunit']
+      lib: {
+        files: '<%= jshint.lib.src %>',
+        tasks: ['jshint:lib']
+      },
+      spec: {
+        files: '<%= jshint.spec.src %>',
+        tasks: ['jshint:spec', 'jasmine-node']
       }
     }
   });
@@ -50,6 +73,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine-node');
   
+  grunt.registerTask('spec', ['jasmine-node']);
+
   // Default task.
-  grunt.registerTask('default', ['jshint', 'jasmine-node']);
+  grunt.registerTask('default', ['jshint', 'spec']);
 };
