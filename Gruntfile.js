@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         options: {
           globals: {
             require: true,
-            exports: true,
+            module: true,
             console: true
           }
         },

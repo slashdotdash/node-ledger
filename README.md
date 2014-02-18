@@ -26,11 +26,31 @@ Install `ledger-cli` and its dependencies with npm.
 Use the Ledger class to execute reports (balance & register are currently supported).
 
     var Ledger = require('ledger-cli').Ledger;
-    ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
     
-### Balance    
+    var ledger = new Ledger({ file: 'path/to/ledger/journal/file.dat' });
+    
+### Available commands
 
-The balance command reports the current balance of all accounts.
+There are five available Ledger commands.
+
+* `accounts` - Lists all accounts for postings.
+* `balance` - Reports the current balance of all accounts.
+* `print` - Prints out the full transactions, sorted by date, using the same format as they would appear in a Ledger data file.
+* `register` - Displays all the postings occurring in a single account.
+* `version` - Gets the currently installed Ledger version number.
+
+### Accounts
+
+Lists all accounts for postings, returns an object `stream`.
+
+    ledger.accounts()
+      .on('data', function(account) {
+        // account is the name of an account (e.g. 'Assets:Current Account')
+      })
+            
+### Balance
+
+The balance command reports the current balance of all accounts, returns an object `stream`.
 
     ledger.balance()
       .on('data', function(entry) {
@@ -55,9 +75,19 @@ The balance command reports the current balance of all accounts.
         // error
       });
     
+### Print
+
+The print command formats the full list of transactions, ordered by date, using the same format as they would appear in a Ledger data file. It returns a readable stream.
+
+    var fs = require('fs'),
+        out = fs.createWriteStream('output.dat');
+    
+    ledger.print()
+      .pipe(out);
+
 ### Register
 
-The register command displays all the postings occurring in a single account.
+The register command displays all the postings occurring in a single account, returns an object `stream`.
 
     ledger.register()
       .on('data', function(entry) {
@@ -69,3 +99,13 @@ The register command displays all the postings occurring in a single account.
       .on('error', function(error) {
         // error
       });
+      
+### Version
+
+The version command is used to get the Ledger binary version. It requires a Node style callback function that is called with either an error or the version number as a string.
+
+    ledger.version(function(err, version) {
+      if (err) { return console.error(err); }
+
+      // version is a string (e.g. '3.0.0-20130529')
+    });

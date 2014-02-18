@@ -33,7 +33,9 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "csv": "~0.3.6"
+    "csv": "~0.3.6",
+    "csv-stream": "~0.1.3",
+    "csv-streamify": "~0.9.0"
   },
   "readmeFilename": "README.md"
 }

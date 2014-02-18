@@ -18,11 +18,11 @@ describe('Accounts', function() {
         .on('data', function(account) {
           accounts.push(account);
         })
-        .once('end', function(){
+        .once('error', function(error) {
+          spec.fail(error);
           done();
         })
-        .on('error', function(error) {
-          spec.fail(error);
+        .once('end', function(){
           done();
         });
     });
