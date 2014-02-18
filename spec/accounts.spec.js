@@ -1,4 +1,6 @@
-var Ledger = require('../lib/ledger').Ledger;
+var chai = require('chai'),
+    expect = chai.expect,
+    Ledger = require('../lib/ledger').Ledger;
 
 describe('Accounts', function() {
   var spec;
@@ -28,11 +30,11 @@ describe('Accounts', function() {
     });
 
     it('should return two accounts', function() {
-      expect(accounts.length).toBe(2);
+      expect(accounts.length).to.equal(2);
     });
 
     it('should return accounts listed alphabetically', function() {
-      expect(accounts).toEqual([
+      expect(accounts).to.eql([
         'Assets:Checking',
         'Income:Salary'
       ]);

@@ -46,11 +46,11 @@ module.exports = function(grunt) {
       }
     },
 
-    'jasmine-node': {
-      run: {
-        spec: 'spec'
-      },
-      executable: './node_modules/.bin/jasmine-node'
+    'mochaTest': {
+      src: ['spec/**/*.spec.js'],
+      options: {
+        reporter: 'spec'
+      }
     },
 
     watch: {
@@ -64,16 +64,16 @@ module.exports = function(grunt) {
       },
       spec: {
         files: '<%= jshint.spec.src %>',
-        tasks: ['jshint:spec', 'jasmine-node']
+        tasks: ['jshint:spec', 'spec']
       }
     }
   });
   
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jasmine-node');
+  grunt.loadNpmTasks('grunt-mocha-test');
   
-  grunt.registerTask('spec', ['jasmine-node']);
+  grunt.registerTask('spec', ['mochaTest']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'spec']);

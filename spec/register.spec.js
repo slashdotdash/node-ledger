@@ -1,14 +1,12 @@
-/*global require, describe, beforeEach, it, expect */
-var ledger = require('../lib/ledger'),
-  Ledger = ledger.Ledger,
-  toBePosting = require('./matchers/posting-matcher').toBePosting;
+var chai = require('chai'),
+    expect = chai.expect,
+    Ledger = require('../lib/ledger').Ledger;
   
 describe('Register', function() {
   var spec;
   
   beforeEach(function() {
     spec = this;
-    spec.addMatchers({ toBePosting: toBePosting });
   });
   
   describe('single transaction', function() {
@@ -32,18 +30,18 @@ describe('Register', function() {
     });
 
     it('should return entry for single transaction', function() {
-      expect(entries.length).toBe(1);
+      expect(entries.length).to.equal(1);
     });
 
     it('should parse transaction', function() {
       var transaction = entries[0];
-      expect(transaction.date).toEqual(new Date(2013, 2, 19));
-      expect(transaction.payee).toBe('My Employer');
+      expect(transaction.date - new Date(2013, 2, 19)).to.equal(0);
+      expect(transaction.payee).to.equal('My Employer');
     });
 
     it('should parse the first posting', function() {
       var posting = entries[0].postings[0];
-      expect(posting).toBePosting({
+      expect(posting).to.eql({
         commodity: {
           currency: '£',
           amount: 1000,
@@ -55,7 +53,7 @@ describe('Register', function() {
     
     it('should parse the second posting', function() {
       var posting = entries[0].postings[1];
-      expect(posting).toBePosting({
+      expect(posting).to.eql({
         commodity: {
           currency: '£',
           amount: -1000,
@@ -87,21 +85,21 @@ describe('Register', function() {
     });
 
     it('should return entries for two matching transactions', function() {
-      expect(entries.length).toBe(2);
+      expect(entries.length).to.equal(2);
     });
 
     it('should parse first transaction', function() {
       var transaction = entries[0];
-      expect(transaction.date).toEqual(new Date(2004, 0, 5));
-      expect(transaction.payee).toBe('Employer');
-      expect(transaction.postings.length).toBe(1);
+      expect(transaction.date - new Date(2004, 0, 5)).to.equal(0);
+      expect(transaction.payee).to.equal('Employer');
+      expect(transaction.postings.length).to.equal(1);
     });
     
     it('should parse second transaction', function() {
       var transaction = entries[1];
-      expect(transaction.date).toEqual(new Date(2004, 1, 1));
-      expect(transaction.payee).toBe('Sale');
-      expect(transaction.postings.length).toBe(1);
+      expect(transaction.date - new Date(2004, 1, 1)).to.equal(0);
+      expect(transaction.payee).to.equal('Sale');
+      expect(transaction.postings.length).to.equal(1);
     });
   });
   
@@ -127,7 +125,7 @@ describe('Register', function() {
     });
 
     it('should return entry for single transaction', function() {
-      expect(entries.length).toBe(1);
+      expect(entries.length).to.equal(1);
     });
   });
 });

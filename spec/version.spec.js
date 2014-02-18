@@ -1,6 +1,6 @@
-/*global require, describe, beforeEach, it, expect */
-var ledger = require('../lib/ledger'),
-    Ledger = ledger.Ledger;
+var chai = require('chai'),
+    expect = chai.expect,
+    Ledger = require('../lib/ledger').Ledger;
 
 describe('Ledger', function() {
   var ledger, spec;
@@ -14,7 +14,7 @@ describe('Ledger', function() {
     ledger.version(function(err, version) {
       if (err) { return spec.fail(err); }
       
-      expect(version.substr(0, 5)).toBe('3.0.0');
+      expect(version.substr(0, 5)).to.equal('3.0.0');
       done();
     });
   });

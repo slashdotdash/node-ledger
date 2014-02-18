@@ -1,14 +1,12 @@
-/*global require, describe, beforeEach, it, expect */
-var ledger = require('../lib/ledger'),
-    Ledger = ledger.Ledger,
-    toBeBalance = require('./matchers/balance-matcher').toBeBalance;
+var chai = require('chai'),
+    expect = chai.expect,
+    Ledger = require('../lib/ledger').Ledger;
 
 describe('Balance', function() {
   var spec;
   
   beforeEach(function() {
     spec = this;
-    spec.addMatchers({ toBeBalance: toBeBalance });
   });
   
   describe('single transaction', function() {
@@ -32,11 +30,11 @@ describe('Balance', function() {
     });
 
     it('should return balance for two accounts', function() {
-      expect(balances.length).toBe(2);
+      expect(balances.length).to.equal(2);
     });
 
     it('should parse first balance', function() {
-      expect(balances[0]).toBeBalance({
+      expect(balances[0]).to.eql({
         total: {
           currency: '£',
           amount: 1000,
@@ -51,7 +49,7 @@ describe('Balance', function() {
     });
 
     it('should parse second balance', function() {
-      expect(balances[1]).toBeBalance({
+      expect(balances[1]).to.eql({
         total: {
           currency: '£',
           amount: -1000,
