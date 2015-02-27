@@ -39,6 +39,7 @@ There are five available Ledger commands.
 * `balance` - Reports the current balance of all accounts.
 * `print` - Prints out the full transactions, sorted by date, using the same format as they would appear in a Ledger data file.
 * `register` - Displays all the postings occurring in a single account.
+* `stats` - Retrieves statistics, like number of unique accounts.
 * `version` - Gets the currently installed Ledger version number.
 
 ### Accounts
@@ -114,7 +115,17 @@ The register command displays all the postings occurring in a single account. It
       .once('error', function(error) {
         // error
       });
-      
+
+### Stats
+
+The stats command is used to retrieve statistics about the Ledger data file. It requires a Node style callback function that is called with either an error or the stats object.
+
+          ledger.stats(function(err, stats) {
+            if (err) { return console.error(err); }
+
+            // stats is a map (e.g. stats['Unique accounts'] = 13)
+          });
+
 ### Version
 
 The version command is used to get the Ledger binary version. It requires a Node style callback function that is called with either an error or the version number as a string.
