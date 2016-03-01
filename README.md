@@ -4,6 +4,8 @@ API for the Ledger command-line interface ([ledger-cli.org](http://ledger-cli.or
 
 > Ledger is a powerful, double-entry accounting system that is accessed from the UNIX command-line.
 
+MIT License
+
 ## Dependencies
 
   * [Ledger 3](http://ledger-cli.org/)
