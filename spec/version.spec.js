@@ -14,7 +14,7 @@ describe('Ledger', function() {
     ledger.version(function(err, version) {
       if (err) { return spec.fail(err); }
       
-      expect(version.substr(0, 5)).to.equal('3.0.0');
+      expect(version.substr(0, 5)).to.match(/3\.[0-9]+\.[0-9]+/);
       done();
     });
   });
