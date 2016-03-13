@@ -128,4 +128,42 @@ describe('Register', function() {
       expect(entries.length).to.equal(1);
     });
   });
+
+  describe('foreign currency transaction', function() {
+    var ledger, entries;
+
+    beforeEach(function(done) {
+      ledger = new Ledger({file: 'spec/data/foreign-currency-transaction.dat'});
+      entries = [];
+
+      ledger.register()
+        .on('data', function(entry) {
+          entries.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .once('error', function(error) {
+          spec.fail(error);
+          done();
+        });
+    });
+
+    it('should return single entry for transaction', function() {
+      expect(entries.length).to.equal(1);
+    });
+
+    it('should parse currency correctly', function() {
+      var transaction = entries[0];
+      var firstPosting = transaction.postings[0];
+      var secondPosting = transaction.postings[1];
+
+      expect(firstPosting.commodity.currency).to.equal('STOCKSYMBOL');
+      expect(firstPosting.commodity.amount).to.equal(50);
+
+      expect(secondPosting.commodity.currency).to.equal('CAD');
+      expect(secondPosting.commodity.amount).to.equal(-9000);
+    });
+
+  });
 });
