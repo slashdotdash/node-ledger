@@ -39,7 +39,8 @@ module.exports = function(grunt) {
             describe: true,
             beforeEach: true,
             it: true,
-            expect: true
+            expect: true,
+            process: true
           }
         },
         src: ['spec/**/*.js']

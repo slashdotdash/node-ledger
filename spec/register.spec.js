@@ -4,16 +4,21 @@ var chai = require('chai'),
   
 describe('Register', function() {
   var spec;
+  var ledgerBinary = null;
   
   beforeEach(function() {
     spec = this;
+    ledgerBinary = process.env.LEDGER_BIN || '/usr/local/bin/ledger';
   });
   
   describe('single transaction', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/single-transaction.dat'});
+      ledger = new Ledger({
+        file: 'spec/data/single-transaction.dat',
+        binary: ledgerBinary
+      });
       entries = [];
       
       ledger.register()
@@ -68,7 +73,10 @@ describe('Register', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/drewr.dat'});
+      ledger = new Ledger({
+        file: 'spec/data/drewr.dat',
+        binary: ledgerBinary
+      });
       entries = [];
 
       ledger.register({account: 'Income'})
@@ -108,7 +116,10 @@ describe('Register', function() {
     var ledger, entries;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/quoted-transaction.dat'});
+      ledger = new Ledger({
+        file: 'spec/data/quoted-transaction.dat',
+        binary: ledgerBinary
+      });
       entries = [];
       
       ledger.register()
@@ -133,7 +144,10 @@ describe('Register', function() {
     var ledger, entries;
 
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/foreign-currency-transaction.dat'});
+      ledger = new Ledger({
+        file: 'spec/data/foreign-currency-transaction.dat',
+        binary: ledgerBinary
+      });
       entries = [];
 
       ledger.register()
