@@ -6,3 +6,8 @@ before_install:
 - sudo add-apt-repository ppa:mbudde/ledger -y
 - sudo apt-get -qq update
 - sudo apt-get install -y ledger
+before_script:
+- npm install -g grunt-cli
+env:
+  matrix:
+  - LEDGER_BIN=ledger
