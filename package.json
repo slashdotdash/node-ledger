@@ -25,11 +25,12 @@
     "lib": "lib"
   },
   "devDependencies": {
-    "chai": "~1.9.0",
-    "grunt": "~0.4.2",
-    "grunt-contrib-jshint": "~0.8.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-mocha-test": "~0.9.0"
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-mocha-test": "~0.13.2"
+    "mocha": "^3.2.0"
   },
   "dependencies": {
     "lodash": "~2.4.1",
