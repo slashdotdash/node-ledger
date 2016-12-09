@@ -4,16 +4,21 @@ var chai = require('chai'),
 
 describe('Balance', function() {
   var spec;
+  var ledgerBinary = null;
   
   beforeEach(function() {
     spec = this;
+    ledgerBinary = process.env.LEDGER_BIN || '/usr/local/bin/ledger';
   });
   
   describe('single transaction', function() {
     var ledger, balances;
     
     beforeEach(function(done) {
-      ledger = new Ledger({file: 'spec/data/single-transaction.dat'});
+      ledger = new Ledger({
+        file: 'spec/data/single-transaction.dat',
+        binary: ledgerBinary
+      });
       balances = [];
 
       ledger.balance()

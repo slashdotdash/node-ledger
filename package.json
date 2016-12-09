@@ -19,7 +19,7 @@
   "license": "MIT",
   "main": "lib/ledger.js",
   "scripts": {
-    "test": ""
+    "test": "grunt"
   },
   "directories": {
     "lib": "lib"
