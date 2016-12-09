@@ -6,6 +6,8 @@ API for the Ledger command-line interface ([ledger-cli.org](http://ledger-cli.or
 
 MIT License
 
+[![Build Status](https://travis-ci.org/slashdotdash/node-ledger.svg?branch=master)](https://travis-ci.org/slashdotdash/node-ledger)
+
 ## Dependencies
 
   * [Ledger 3](http://ledger-cli.org/)
@@ -76,8 +78,8 @@ ledger.balance()
         currency: '£',
         amount: 1000,
         formatted: '£1,000.00'
-      }, 
-      account: { 
+      },
+      account: {
         fullname: 'Assets:Checking',
         shortname: 'Assets:Checking',
         depth: 2,
