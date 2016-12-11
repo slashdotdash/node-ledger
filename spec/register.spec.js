@@ -140,6 +140,35 @@ describe('Register', function() {
     });
   });
 
+  // Handle commodities that must be quoted
+  describe('quoted commodity', function() {
+    var ledger, entries;
+    
+    beforeEach(function(done) {
+      ledger = new Ledger({
+        file: 'spec/data/quoted-commodity.dat',
+        binary: ledgerBinary
+      });
+      entries = [];
+      
+      ledger.register()
+        .on('data', function(entry) {
+          entries.push(entry);
+        })
+        .once('end', function(){
+          done();
+        })
+        .once('error', function(error) {
+          spec.fail(error);
+          done();
+        });
+    });
+
+    it('should return all the transactions', function() {
+      expect(entries.length).to.equal(2);
+    });
+  });
+
   describe('foreign currency transaction', function() {
     var ledger, entries;
 
