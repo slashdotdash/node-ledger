@@ -33,7 +33,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.5",
     "csv-streamify": "^3.0.4"
   },
   "readmeFilename": "README.md"
